@@ -3,9 +3,11 @@ import { useEffect, useState } from "react";
 import ScoopOptions from "./ScoopOptions";
 import Row from "react-bootstrap/Row";
 import ToppingOptions from "./ToppingOptions";
+import AlertBanner from "../common/AlertBanner";
 
 const Options = ({ optionType }) => {
   const [items, setItems] = useState([]);
+  const [error, setError] = useState(false);
 
   //optionType is 'scoops' or 'toppings'
   useEffect(() => {
@@ -13,11 +15,14 @@ const Options = ({ optionType }) => {
       .get(`http://localhost:3030/${optionType}`)
       .then((response) => setItems(response.data))
       .catch((err) => {
-        //TODO: handle error response
+        setError(true);
       });
   }, [optionType]);
 
-  //TODO: replace 'null' with ToppingOptions when available
+  if (error) {
+    return <AlertBanner />;
+  }
+
   const ItemComponent = optionType === "scoops" ? ScoopOptions : ToppingOptions;
 
   const optionItems = items.map((item) => (
