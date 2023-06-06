@@ -18,7 +18,7 @@ const ScoopOptions = ({ name, imagePath }) => {
         alt={`${name} scoop`}
       />
       <Form.Group
-        constrolId={`${name}-count`}
+        constrolid={`${name}-count`}
         as={Row}
         style={{ marginTop: "10px" }}
       >
