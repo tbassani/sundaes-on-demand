@@ -1,9 +1,12 @@
 import Options from "./Options";
 import { useOrderDetails } from "../../contexts/OrderDetails";
 import { formatCurrency } from "../../util";
+import { Button } from "react-bootstrap";
+import { useOrderPhase } from "../../contexts/OrderPhase";
 
 const OrderEntry = () => {
   const { totals } = useOrderDetails();
+  const { nextPhase } = useOrderPhase();
   return (
     <div>
       <Options optionType="scoops" />
@@ -11,6 +14,7 @@ const OrderEntry = () => {
       <h2>
         Grand total: {formatCurrency(totals["scoops"] + totals["toppings"])}
       </h2>
+      <Button onClick={nextPhase}>Submit order</Button>
     </div>
   );
 };

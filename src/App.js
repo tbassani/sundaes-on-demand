@@ -1,15 +1,13 @@
 import { Container } from "react-bootstrap";
-import OrderEntry from "./pages/entry/OrderEntry";
-import { OrderDetailsProvider } from "./contexts/OrderDetails";
+import Wrapper from "./pages/common/Wrapper";
+import { OrderPhaseProvider } from "./contexts/OrderPhase";
 
 function App() {
   return (
     <Container>
-      {/*Summary page and entry page need provider */}
-      <OrderDetailsProvider>
-        <OrderEntry />
-      </OrderDetailsProvider>
-      {/*Confirmation page does not need provider */}
+      <OrderPhaseProvider>
+        <Wrapper />
+      </OrderPhaseProvider>
     </Container>
   );
 }

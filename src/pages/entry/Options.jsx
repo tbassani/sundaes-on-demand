@@ -21,7 +21,7 @@ const Options = ({ optionType }) => {
       .get(`http://localhost:3030/${optionType}`, { signal: controller.signal })
       .then((response) => setItems(response.data))
       .catch((err) => {
-        if (err.name !== "CancelledError") {
+        if (err.name !== "CanceledError") {
           setError(true);
         }
       });

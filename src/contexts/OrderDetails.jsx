@@ -6,15 +6,15 @@ const OrderDetails = createContext();
 //custom hook to check if we are within a provider, otherwise throw an error
 
 export const useOrderDetails = () => {
-  const constextValue = useContext(OrderDetails);
+  const contextValue = useContext(OrderDetails);
 
-  if (!constextValue) {
+  if (!contextValue) {
     throw new Error(
       "useOrderDetails must be called from within an OrderDetailsProvider"
     );
   }
 
-  return constextValue;
+  return contextValue;
 };
 
 export const OrderDetailsProvider = (props) => {
