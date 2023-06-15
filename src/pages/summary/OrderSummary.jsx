@@ -22,8 +22,9 @@ const OrderSummary = () => {
       <h1>Order Summary</h1>
       <h2>Scoops: {formatCurrency(totals.scoops)}</h2>
       <ul>{scoopList}</ul>
-      <h2>Toppings: {formatCurrency(totals.toppings)}</h2>
-      <ul>{toppingList}</ul>
+      {totals.toppings && <h2>Toppings: {formatCurrency(totals.toppings)}</h2>}
+
+      {totals.toppings && <ul>{toppingList}</ul>}
       <SummaryForm />
     </div>
   );

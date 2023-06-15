@@ -14,7 +14,9 @@ const OrderEntry = () => {
       <h2>
         Grand total: {formatCurrency(totals["scoops"] + totals["toppings"])}
       </h2>
-      <Button onClick={nextPhase}>Submit order</Button>
+      <Button onClick={nextPhase} disabled={!totals["scoops"]}>
+        Submit order
+      </Button>
     </div>
   );
 };

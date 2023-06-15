@@ -1,3 +1,4 @@
+import { useState } from "react";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
@@ -5,9 +6,18 @@ import { useOrderDetails } from "../../contexts/OrderDetails";
 
 const ScoopOptions = ({ name, imagePath }) => {
   const { updateItemCount } = useOrderDetails();
+  const [isValid, setIsValid] = useState(true);
 
   const handleChange = (e) => {
-    updateItemCount(name, parseInt(e.target.value), "scoops");
+    const currentValueFloat = parseFloat(e.target.value);
+    const valueIsValid =
+      currentValueFloat >= 0 &&
+      currentValueFloat <= 10 &&
+      Math.floor(currentValueFloat) === currentValueFloat;
+
+    setIsValid(valueIsValid);
+    const newValue = valueIsValid ? parseInt(currentValueFloat) : 0;
+    updateItemCount(name, newValue, "scoops");
   };
 
   return (
@@ -36,6 +46,7 @@ const ScoopOptions = ({ name, imagePath }) => {
             type="number"
             defaultValue={0}
             onChange={handleChange}
+            isInvalid={!isValid}
           />
         </Col>
       </Form.Group>
